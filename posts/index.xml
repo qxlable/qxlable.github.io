@@ -1,11 +1,411 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Code Trails</title><link>https://qxlable.github.io/posts/</link><description>Recent content in Posts on Code Trails</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>qxlable@gmail.com (Qxlable)</managingEditor><webMaster>qxlable@gmail.com (Qxlable)</webMaster><copyright>QXL</copyright><lastBuildDate>Mon, 11 Aug 2025 08:37:59 +0800</lastBuildDate><atom:link href="https://qxlable.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Nlp_notes</title><link>https://qxlable.github.io/posts/nlp_notes/</link><pubDate>Mon, 11 Aug 2025 08:37:59 +0800</pubDate><author>qxlable@gmail.com (Qxlable)</author><guid>https://qxlable.github.io/posts/nlp_notes/</guid><description>&lt;h3 id="nlp应用">nlp应用
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Code Trails</title><link>https://qxlable.github.io/posts/</link><description>Recent content in Posts on Code Trails</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><managingEditor>qxlable@gmail.com (Qxlable)</managingEditor><webMaster>qxlable@gmail.com (Qxlable)</webMaster><copyright>QXL</copyright><lastBuildDate>Tue, 12 Aug 2025 08:32:01 +0800</lastBuildDate><atom:link href="https://qxlable.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>LLM 基础</title><link>https://qxlable.github.io/posts/llm-%E5%9F%BA%E7%A1%80/</link><pubDate>Tue, 12 Aug 2025 08:32:01 +0800</pubDate><author>qxlable@gmail.com (Qxlable)</author><guid>https://qxlable.github.io/posts/llm-%E5%9F%BA%E7%A1%80/</guid><description>&lt;h3 id="">
+&lt;/h3>&lt;p>能力涌现：当参数规模到达一定规模，模型性能会显著提升&lt;/p>
+&lt;h3 id="预训练">预训练
+&lt;/h3>&lt;p>生成流畅文本，掌握世界知识&lt;/p>
+&lt;h3 id="指令学习">指令学习
+&lt;/h3>&lt;p>构造不同任务的指令描述
+人工标注、半自动构造若干任务提示样本和答案&lt;/p>
+&lt;p>更好激活理解用户意图能力
+增强任务本身泛化能力&lt;/p>
+&lt;ul>
+&lt;li>人类反馈强化学习(RLHF)人工排序模型回复，并使用排序结果训练奖励模型&lt;/li>
+&lt;li>原则：有用，真实，无害&lt;/li>
+&lt;/ul>
+&lt;h3 id="多模态大模型">多模态大模型
+&lt;/h3>&lt;p>CLIP模型生成相似度得分
+ALIGNGPT-训练数据集不太够&lt;/p>
+&lt;ul>
+&lt;li>意图识别&lt;/li>
+&lt;li>对话系统&lt;/li>
+&lt;li>复杂问题求解智能体：模拟人类老师纠错行为，Dr3模型：分解-判别-重新组合-重新解决-重新分解；&lt;/li>
+&lt;li>视觉GUI智能体&lt;/li>
+&lt;li>数据分析助手-data-agent&lt;/li>
+&lt;/ul>
+&lt;h3 id="预训练基础">预训练基础
+&lt;/h3>&lt;p>背景-词向量技术-通过千层神经网络，学习固定的词向量表示，词向量不随上下文改变。&lt;/p>
+&lt;blockquote>
+&lt;p>词向量是上下文无关的；且单词具有一词多义性，&lt;/p>&lt;/blockquote>
+&lt;ul>
+&lt;li>上下文相关的词向量 ELMo&lt;/li>
+&lt;li>深度学习范式-面向任务的模型设计&lt;/li>
+&lt;li>端到端学习&amp;ndash;不需要复杂的特征工程&lt;/li>
+&lt;li>结构工程-归纳偏置&lt;/li>
+&lt;li>预训练范式：统一的模型结构，海量的预训练数据；上下文相关的词表示；新范式&lt;/li>
+&lt;li>预训练架构-&lt;/li>
+&lt;li>encoder
+&lt;ul>
+&lt;li>MLM掩码语言模型&lt;/li>
+&lt;li>bert——同时建模双向信息，但是不会泄露目标词的信息。
+&lt;ul>
+&lt;li>对每个输入文本，随机选择15%词，其中80%mask掉，预测出mask掉的词，10%的词随机替换，预测出原来的词，10%的词保留，但任然进行预测（why）-&amp;gt;因为有替换，让模型有对于是否替换的辨别能力。&lt;/li>
+&lt;li>学习句子内部的语义关系(句子级)。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>预训练任务2：nsp(next sentence prediction)
+&lt;ul>
+&lt;li>对于文本中连续的两个句子，以一定概率替换其中某个句子。&lt;/li>
+&lt;li>预测两个句子是否连续&lt;/li>
+&lt;li>学习句子内部的语义关系(篇章级)。&lt;/li>
+&lt;li>预训练：&lt;/li>
+&lt;li>分类，输入单个句子，输出token [CLS]表示进行分类&lt;/li>
+&lt;li>序列化标注-对输入序列每个token进行分类；&lt;/li>
+&lt;li>机器阅读理解&lt;/li>
+&lt;li>RoBERTa 删除下一句预测任务，训练更长时间，更多数据&lt;/li>
+&lt;li>SpanBERT更有效的训练任务：mask连续单词&lt;/li>
+&lt;li>BERT基于编码器架构，能够很好用于判别式任务，但是很难用于生成式任务。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>encoder-decoder 编码器-解码器架构-T5
+&lt;ul>
+&lt;li>所有任务都被转换成任务生成完成&lt;/li>
+&lt;li>相同的模型，相同的损失函数&lt;/li>
+&lt;li>预训练任务
+&lt;ul>
+&lt;li>编码器：将输入句子某些span用特定占位符替代并进行编码&lt;/li>
+&lt;li>解码器：解码出原始句子中被替代的部分&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>微调
+&lt;ul>
+&lt;li>编码器：原始任务句子&lt;/li>
+&lt;li>解码器: 任务对应的答案&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>decoder 语言模型，擅长生成式任务
+&lt;ul>
+&lt;li>预训练任务&lt;/li>
+&lt;li>根据前文预测下一个词&lt;/li>
+&lt;li>GPT3(In-context-learning)：正确的问，科学地提示和引导、从上下文中学会任务、现学现用，举一反三&lt;/li>
+&lt;li>
+&lt;blockquote>
+&lt;p>如果大模型新任务做的不好，该怎么做-&amp;gt;使用In-context-learning，将之前已有的例子输入给它让它仿照。&lt;/p>&lt;/blockquote>
+&lt;/li>
+&lt;li>思维链chain of thought&lt;/li>
+&lt;li>prompt包含实例的推理过程，模型模仿实力推理过程，更容易生成正确答案。&lt;/li>
+&lt;li>Scaling laws 经验观察&lt;/li>
+&lt;li>扩大模型规模可以可靠地降低模型困惑度&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>预训练+提示+预测&lt;/li>
+&lt;li>命名实体识别、/文本情感分类
+预训练+微调 文本-&amp;gt;上游任务
+预训练+提示+预测 上游任务-&amp;gt;文本&lt;/li>
+&lt;/ul>
+&lt;h3 id="post-training">post-training
+&lt;/h3>&lt;h4 id="指令微调">指令微调
+&lt;/h4>&lt;ul>
+&lt;li>过程
+&lt;ul>
+&lt;li>收集大量任务的指令，进行微调&lt;/li>
+&lt;li>在unseen任务上进行测试&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Instruction tuning&lt;/li>
+&lt;li>例子：FLAN：指令微调数据，12类，62个数据集&lt;/li>
+&lt;li>数据蒸馏&lt;/li>
+&lt;li>自问自答；指令prompt和答案均由LLM生成&lt;/li>
+&lt;/ul>
+&lt;p>指令微调SFT局限性&lt;/p>
+&lt;blockquote>
+&lt;p>模型回复未必对人类有用、安全、真实、无害，且可能引发歧义。&lt;/p>&lt;/blockquote>
+&lt;ul>
+&lt;li>建模人类偏好&lt;/li>
+&lt;li>偏好优化：最大化LLM回复的预期偏好得分。(公式)&lt;/li>
+&lt;li>梯度上升&lt;/li>
+&lt;li>目标：计算梯度&lt;/li>
+&lt;li>蒙特卡洛采样&lt;/li>
+&lt;li>第一步&lt;/li>
+&lt;li>第二步 奖励建模&lt;/li>
+&lt;li>第三步 强化学习&lt;/li>
+&lt;li>使用ppo优化奖励函数，&lt;/li>
+&lt;/ul>
+&lt;p>DPO: 基于数据驱动的预训练优化 推导：
+HLRF: 基于人类反馈的预训练优化&lt;/p>
+&lt;ul>
+&lt;li>DPO：无法保证找到最优的policy&lt;/li>
+&lt;li>缓解DPO问题的方法：
+&lt;ol>
+&lt;li>在DPO上进行额外的SFT&lt;/li>
+&lt;li>使用经过训练的奖励模型进行在线生成和打分&lt;/li>
+&lt;li>消除有噪音或冲突的数据&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>如何提升PPO性能
+&lt;ol>
+&lt;li>使用更大的batch&lt;/li>
+&lt;li>Advantage 规范化&lt;/li>
+&lt;li>使用滑动平均对Reference Model进行更新 ()&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul></description></item><item><title>LLM 专业理论深度解析</title><link>https://qxlable.github.io/posts/llm/</link><pubDate>Tue, 12 Aug 2025 08:32:01 +0800</pubDate><author>qxlable@gmail.com (Qxlable)</author><guid>https://qxlable.github.io/posts/llm/</guid><description>&lt;hr>
+&lt;h2 id="一能力涌现的数学原理">一、能力涌现的数学原理
+&lt;/h2>&lt;h3 id="1-相变理论模型">1. 相变理论模型
+&lt;/h3>&lt;p>&lt;strong>Hutter相变公式&lt;/strong>：
+&lt;/p>
+$$
+P_{\text{emergence}} = 1 - \exp\left(-\left(\frac{N}{N_c}\right)^\gamma \cdot \left(\frac{D}{D_c}\right)^\delta\right)
+$$&lt;ul>
+&lt;li>$N_c$：参数量临界阈值（≈$10^{11}$）&lt;/li>
+&lt;li>$D_c$：数据量临界阈值（≈$10^{13}$ tokens）&lt;/li>
+&lt;li>$\gamma, \delta$：任务相关指数（$\gamma≈0.7, \delta≈0.3$）&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>实例验证&lt;/strong>：GPT-3在$N=1.75\times10^{11}$时涌现代码生成能力，验证$N/N_c≈1.75&amp;gt;1$&lt;/p>&lt;/blockquote>
+&lt;h3 id="2-损失曲面分析">2. 损失曲面分析
+&lt;/h3>&lt;p>大模型表现出更平滑的损失曲面：
+&lt;/p>
+$$
+\mathcal{L}(\theta) = \mathcal{L}(\theta^*) + \frac{1}{2}(\theta-\theta^*)^T H(\theta-\theta^*)
+$$&lt;ul>
+&lt;li>当$N$增大，Hessian矩阵$H$的特征值分布：
+&lt;ul>
+&lt;li>小模型：$\lambda_{\max}/\lambda_{\min}&amp;gt;10^3$（尖锐极小值）&lt;/li>
+&lt;li>大模型：$\lambda_{\max}/\lambda_{\min}&amp;lt;10$（宽平坦区）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="二预训练核心技术深度">二、预训练核心技术深度
+&lt;/h2>&lt;h3 id="1-transformer-架构数学描述">1. Transformer 架构数学描述
+&lt;/h3>&lt;h4 id="自注意力机制">自注意力机制：
+&lt;/h4>$$
+\text{Attention}(Q,K,V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
+$$&lt;ul>
+&lt;li>$Q,K,V \in \mathbb{R}^{n\times d_k}$：查询/键/值矩阵&lt;/li>
+&lt;li>$\sqrt{d_k}$：缩放因子（防止梯度消失）&lt;/li>
+&lt;/ul>
+&lt;h4 id="多头注意力">多头注意力：
+&lt;/h4>$$
+\text{MultiHead} = \text{Concat}(\text{head}_1,...,\text{head}_h)W^O \\
+\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
+$$&lt;h3 id="2-bert-预训练理论">2. BERT 预训练理论
+&lt;/h3>&lt;h4 id="mlm-损失函数">MLM 损失函数：
+&lt;/h4>$$
+\mathcal{L}_{\text{MLM}} = -\sum_{i \in M} \log P(x_i | \mathbf{x}_{\backslash M})
+$$&lt;ul>
+&lt;li>$M$：掩码位置索引集&lt;/li>
+&lt;li>条件概率建模：$P(x_i|\mathbf{x}_{\backslash M}) = \text{softmax}(\mathbf{W}\mathbf{h}_i + \mathbf{b})$&lt;/li>
+&lt;/ul>
+&lt;h4 id="nsp-任务概率模型">NSP 任务概率模型：
+&lt;/h4>$$
+P(\text{IsNext}|s_A,s_B) = \sigma(\mathbf{w}^T[\mathbf{h}_{CLS}^{A}; \mathbf{h}_{CLS}^{B}])
+$$&lt;ul>
+&lt;li>$\sigma$：sigmoid函数&lt;/li>
+&lt;li>$\mathbf{h}_{CLS}$：[CLS]位置隐藏状态&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>架构对比实验&lt;/strong>：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>任务&lt;/th>
+&lt;th>BERT-base&lt;/th>
+&lt;th>RoBERTa&lt;/th>
+&lt;th>增益&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>MNLI匹配&lt;/td>
+&lt;td>84.6%&lt;/td>
+&lt;td>90.2%&lt;/td>
+&lt;td>+5.6%&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>SQuAD 2.0&lt;/td>
+&lt;td>76.3%&lt;/td>
+&lt;td>88.9%&lt;/td>
+&lt;td>+12.6%&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/blockquote>
+&lt;hr>
+&lt;h2 id="三指令学习数学框架">三、指令学习数学框架
+&lt;/h2>&lt;h3 id="1-rlhf-三阶段优化">1. RLHF 三阶段优化
+&lt;/h3>&lt;h4 id="阶段1监督微调sft">阶段1：监督微调(SFT)
+&lt;/h4>&lt;p>最小化负对数似然：
+&lt;/p>
+$$
+\mathcal{L}_{\text{SFT}} = -\mathbb{E}_{(x,y)\sim \mathcal{D}} \sum_{t=1}^T \log \pi_{\theta}(y_t | x, y_{&lt;t})
+$$&lt;h4 id="阶段2奖励建模rm">阶段2：奖励建模(RM)
+&lt;/h4>&lt;p>Bradley-Terry模型：
+&lt;/p>
+$$
+P(y_i \succ y_j) = \frac{\exp(r_\phi(y_i|x))}{\exp(r_\phi(y_i|x)) + \exp(r_\phi(y_j|x))}
+$$&lt;p>
+损失函数：
+&lt;/p>
+$$
+\mathcal{L}_{\text{RM}} = -\log \sigma(r_\phi(y_w|x) - r_\phi(y_l|x))
+$$&lt;h4 id="阶段3ppo优化">阶段3：PPO优化
+&lt;/h4>&lt;p>目标函数：
+&lt;/p>
+$$
+\max_\theta \mathbb{E} \left[ r_\phi(y|x) - \beta D_{KL}(\pi_\theta || \pi_{\text{SFT}}) \right]
+$$&lt;p>
+&lt;strong>梯度更新&lt;/strong>：
+&lt;/p>
+$$
+\nabla_\theta \mathcal{L}_{\text{PPO}} = \mathbb{E} \left[ \nabla_\theta \log \pi_\theta(y|x) A(x,y) \right]
+$$&lt;p>
+其中优势函数$A(x,y) = r_\phi(y|x) - V(x)$&lt;/p>
+&lt;h3 id="2-指令泛化理论">2. 指令泛化理论
+&lt;/h3>&lt;p>&lt;strong>任务分布外泛化&lt;/strong>：
+&lt;/p>
+$$
+\mathbb{E}_{T\sim p_{\text{train}}}}[\mathcal{L}_T(\theta)] \leq \mathbb{E}_{T\sim p_{\text{test}}}}[\mathcal{L}_T(\theta)] + \sqrt{\frac{\text{COMP}(p_{\text{train}}, p_{\text{test}}})}{n}}
+$$&lt;ul>
+&lt;li>COMP：任务分布复杂度&lt;/li>
+&lt;li>$n$：训练任务数量&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>FLAN实证&lt;/strong>：当$n&amp;gt;50$时，未知任务准确率提升37%&lt;/p>&lt;/blockquote>
+&lt;hr>
+&lt;h2 id="四多模态模型理论">四、多模态模型理论
+&lt;/h2>&lt;h3 id="1-clip-对比学习">1. CLIP 对比学习
+&lt;/h3>&lt;p>&lt;strong>图像-文本对齐损失&lt;/strong>：
+&lt;/p>
+$$
+\mathcal{L}_{\text{CLIP}} = -\frac{1}{B}\sum_{i=1}^B \left( \log \frac{e^{\text{sim}(I_i,T_i)/\tau}}{\sum_{j=1}^B e^{\text{sim}(I_i,T_j)/\tau}} + \log \frac{e^{\text{sim}(T_i,I_i)/\tau}}{\sum_{j=1}^B e^{\text{sim}(T_i,I_j)/\tau}} \right)
+$$&lt;ul>
+&lt;li>$\text{sim}(\mathbf{u},\mathbf{v}) = \mathbf{u}^T\mathbf{v}/|\mathbf{u}||\mathbf{v}|$&lt;/li>
+&lt;li>$\tau$：温度参数（控制分布尖锐度）&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-llava-视觉编码器">2. LLaVA 视觉编码器
+&lt;/h3>&lt;p>&lt;strong>跨模态投影&lt;/strong>：
+&lt;/p>
+$$
+\mathbf{H}_{\text{visual}} = \text{Proj}(\text{CNN}(I))W_p \\
+\mathbf{H}_{\text{fused}} = \text{Transformer}(\text{Concat}(\mathbf{H}_{\text{text}}; \mathbf{H}_{\text{visual}}))
+$$&lt;ul>
+&lt;li>$W_p$：可学习投影矩阵&lt;/li>
+&lt;li>信息交互：交叉注意力机制&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="五decoder架构数学本质">五、Decoder架构数学本质
+&lt;/h2>&lt;h3 id="1-自回归生成模型">1. 自回归生成模型
+&lt;/h3>&lt;p>&lt;strong>概率链式分解&lt;/strong>：
+&lt;/p>
+$$
+P(\mathbf{y}|\mathbf{x}) = \prod_{t=1}^T P(y_t | \mathbf{x}, y_{&lt;t})
+$$&lt;p>
+&lt;strong>梯度计算&lt;/strong>：
+&lt;/p>
+$$
+\nabla_\theta \mathcal{L} = -\sum_{t=1}^T \nabla_\theta \log P(y_t | \mathbf{x}, y_{&lt;t})
+$$&lt;h3 id="2-思维链cot的马尔可夫过程">2. 思维链(CoT)的马尔可夫过程
+&lt;/h3>&lt;p>&lt;strong>推理状态转移&lt;/strong>：
+&lt;/p>
+$$
+P(R_{k+1} | R_k) = \text{softmax}(\mathbf{W} \cdot \text{GeLU}(\mathbf{U}R_k))
+$$&lt;ul>
+&lt;li>$R_k$：第$k$步推理状态&lt;/li>
+&lt;li>终止条件：$P(\text{END}|R_k) &amp;gt; \lambda$&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>&lt;strong>GSM8K数据集实验&lt;/strong>：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>方法&lt;/th>
+&lt;th>准确率&lt;/th>
+&lt;th>提升&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>直接生成&lt;/td>
+&lt;td>34%&lt;/td>
+&lt;td>-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CoT&lt;/td>
+&lt;td>62%&lt;/td>
+&lt;td>+82%&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CoT+自验证&lt;/td>
+&lt;td>75%&lt;/td>
+&lt;td>+121%&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/blockquote>
+&lt;hr>
+&lt;h2 id="六大模型优化理论">六、大模型优化理论
+&lt;/h2>&lt;h3 id="1-混合精度训练">1. 混合精度训练
+&lt;/h3>&lt;p>&lt;strong>内存优化公式&lt;/strong>：
+&lt;/p>
+$$
+\text{Mem}_{\text{total}} = 4N + 12N + 4\frac{N}{K} + 4BTLd
+$$&lt;ul>
+&lt;li>$N$：参数量&lt;/li>
+&lt;li>$K$：梯度累积步数&lt;/li>
+&lt;li>$B$：批大小&lt;/li>
+&lt;li>$T$：序列长度&lt;/li>
+&lt;li>$d$：隐藏层维度&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-分布式训练">2. 分布式训练
+&lt;/h3>&lt;p>&lt;strong>3D并行策略&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>数据并行&lt;/strong>：$O(\frac{N}{P_d})$&lt;/li>
+&lt;li>&lt;strong>张量并行&lt;/strong>：$O(\frac{N}{P_t})$&lt;/li>
+&lt;li>&lt;strong>流水并行&lt;/strong>：$O(\frac{L}{P_p})$&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>通信复杂度&lt;/strong>：
+&lt;/p>
+$$
+C_{\text{3D}} = O\left( \frac{TBd}{P_t} + \frac{N}{P_p} + \frac{TLd}{P_d} \right)
+$$&lt;hr>
+&lt;h2 id="七专业术语对照表">七、专业术语对照表
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>术语&lt;/th>
+&lt;th>数学符号&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>词嵌入&lt;/td>
+&lt;td>$\mathbf{E} \in \mathbb{R}^{V \times d}$&lt;/td>
+&lt;td>词表$V$的$d$维表示&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>位置编码&lt;/td>
+&lt;td>$PE(pos,2i) = \sin(pos/10000^{2i/d})$&lt;/td>
+&lt;td>正弦位置编码&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>层归一化&lt;/td>
+&lt;td>$\text{LayerNorm}(x) = \gamma \frac{x-\mu}{\sigma} + \beta$&lt;/td>
+&lt;td>稳定训练&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>残差连接&lt;/td>
+&lt;td>$\mathbf{H}^{(l+1)} = f(\mathbf{H}^{(l)}) + \mathbf{H}^{(l)}$&lt;/td>
+&lt;td>缓解梯度消失&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>温度采样&lt;/td>
+&lt;td>$P(w) \propto \exp(\logits / \tau)$&lt;/td>
+&lt;td>控制生成多样性&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Nlp_notes</title><link>https://qxlable.github.io/posts/nlp_notes/</link><pubDate>Mon, 11 Aug 2025 08:37:59 +0800</pubDate><author>qxlable@gmail.com (Qxlable)</author><guid>https://qxlable.github.io/posts/nlp_notes/</guid><description>&lt;h3 id="nlp应用">nlp应用
 &lt;/h3>&lt;p>文本分类、情感分析、文本抽取、推荐系统&lt;br>
 &lt;strong>过程&lt;/strong>&lt;br>
 理性主义-经验主义&lt;/p>
 &lt;h3 id="语言模型和词向量">语言模型和词向量
-&lt;/h3>&lt;p>上下文相关的信息表达和信息传递&lt;br>
+&lt;/h3>&lt;p>上下文相关的信息表达和信息传递&lt;/p>
+&lt;blockquote>
+&lt;p>用于计算一段文本可能性的概率模型
 &lt;strong>求概率&lt;/strong> p(s) = p(w1,w2……wn)=p(w1)* p(w2|w1) *……&lt;br>
-语言模型就是给定前一个词预测下一个词的概率&lt;/p>
+语言模型就是给定前一个词预测下一个词的概率&lt;/p>&lt;/blockquote>
 &lt;p>&lt;strong>马尔科夫链&lt;/strong>&lt;br>
 当前时刻状态概率分布只能由上一时刻状态决定，和更久之前状态无关&lt;br>
 &lt;strong>k阶马尔科夫链&lt;/strong>&lt;br>
